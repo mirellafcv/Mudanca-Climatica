@@ -1,0 +1,217 @@
+/* ==========================================================================
+   DADOS DE CONFIGURAÇÃO DE CORES E FONTE (VARIAVEIS CSS)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Paleta de cores oficial do projeto Green Rats */
+  --cor-asfalto: #1b1f1d; /* Fundo principal */
+  --cor-musgo: #375915;   /* Detalhes secundarios e bordas fracas */
+  --cor-verde: #73963b;   /* Destaques principais, botões e acertos */
+  --cor-laranja: #944c25; /* Pontos de ação e badges de aviso */
+  --cor-clara: #eef0e2;   /* Texto principal e fundos de contraste */
+
+  /* Mapeamento de fontes solicitadas */
+  --fonte-titulo: 'Anton', sans-serif;
+  --fonte-corpo: 'Inter', sans-serif;
+  --fonte-numero: 'Space Mono', monospace;
+}
+
+/* ==========================================================================
+   RESET BÁSICO E ESTILOS GERAIS DA PÁGINA
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--cor-asfalto);
+  color: var(--cor-clara);
+  font-family: var(--fonte-corpo);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Container do Cartão de Autenticação */
+.auth-card {
+  width: 100%;
+  max-width: 900px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 2px solid var(--cor-clara);
+  border-radius: 12px;
+  padding: 45px 36px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Titulos estilizados com a fonte 'Anton' */
+h1, h2 {
+  font-family: var(--fonte-titulo);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.title-main {
+  font-size: 2.2rem;
+  color: var(--cor-verde);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--cor-musgo);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   BOTÕES DE NAVEGAÇÃO ENTRE TELAS (TABS)
+   ========================================================================== */
+.tab-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid var(--cor-musgo);
+  color: var(--cor-clara);
+  font-family: var(--fonte-titulo);
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  background-color: var(--cor-verde);
+  color: var(--cor-asfalto);
+  border-color: var(--cor-verde);
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO DOS FORMULÁRIOS E INPUTS
+   ========================================================================== */
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--cor-musgo);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #121514;
+  border: 1px solid var(--cor-musgo);
+  border-radius: 6px;
+  color: var(--cor-clara);
+  font-family: var(--fonte-corpo);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--cor-verde);
+}
+
+/* Botão de Submit Principal */
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--cor-laranja);
+  color: var(--cor-clara);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #e87539;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   CRASS / PASSAPORTE URBANO (TELA DE SUCESSO)
+   ========================================================================== */
+.pass-card {
+  display: none; /* Inicia oculto via CSS e ativado via JS */
+  background: #121514;
+  border: 2px solid var(--cor-verde);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.pass-header {
+  border-bottom: 1px dashed var(--cor-musgo);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+/* Exibição dos dados com a fonte 'Space Mono' */
+.pass-stat-value {
+  font-family: var(--fonte-numero);
+  font-size: 1.8rem;
+  color: var(--cor-verde);
+  font-weight: bold;
+}
+
+.pass-stat-label {
+  font-size: 0.7rem;
+  color: var(--cor-musgo);
+  text-transform: uppercase;
+}
+
+.user-tag {
+  font-family: var(--fonte-titulo);
+  font-size: 1.6rem;
+  color: var(--cor-clara);
+}
+
+/* Utilitários de controle de exibição */
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   FOOTER DA ABA DE CADASTRO
+   ========================================================================== */
+.cad-footer {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--cor-musgo);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--cor-musgo);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cad-footer .author {
+  color: var(--cor-verde);
+  font-weight: 700;
+  margin-top: 4px;
+}
