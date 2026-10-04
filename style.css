@@ -32,9 +32,10 @@ body {
   font-family: var(--fonte-corpo);
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  padding: 20px;
+  padding: 30px 20px;
 }
 
 /* Container do Cartão de Autenticação */
@@ -214,4 +215,216 @@ input:focus {
   color: var(--cor-verde);
   font-weight: 700;
   margin-top: 4px;
+}
+
+/* Garante a exibição do pass-card dentro da página menu.html */
+body #menuPrincipal .pass-card,
+.auth-card > .pass-card {
+  display: block !important;
+}
+
+/* ==========================================================================
+   BOTÕES DE NAVEGAÇÃO NO TOPO (COM A FONTE DO USERNAME)
+   ========================================================================== */
+
+/* Garante que o username e os botões do topo usem a fonte 'Anton' */
+.user-tag-font,
+.nav-btn-street {
+  font-family: var(--fonte-titulo) !important; /* 'Anton', sans-serif */
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Container dos botões no topo */
+.top-nav-buttons {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Estilo dos botões de navegação no topo */
+.nav-btn-street {
+  background-color: var(--cor-asfalto);
+  color: var(--cor-verde);
+  border: 2px solid var(--cor-musgo);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn-street:hover {
+  background-color: var(--cor-verde);
+  color: var(--cor-asfalto);
+  border-color: var(--cor-verde);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(115, 150, 59, 0.3);
+}
+
+/* Botão de sair estilizado em laranja */
+.nav-btn-street.logout {
+  color: var(--cor-laranja);
+  border-color: var(--cor-laranja);
+}
+
+.nav-btn-street.logout:hover {
+  background-color: var(--cor-laranja);
+  color: var(--cor-clara);
+}
+
+.brand-title {
+  font-family: var(--fonte-titulo);
+  font-size: 2.2rem;
+  color: var(--cor-verde);
+}
+
+.brand-tag {
+  font-size: 0.8rem;
+  color: var(--cor-musgo);
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   MENU HAMBÚRGUER (3 BARRINHAS) E AUMENTO DO CARD CENTRAL
+   ========================================================================== */
+
+/* Expande o cartão do meio */
+.auth-card.large-card {
+  max-width: 1300px;
+  min-height: 70px;
+  width: 92%;
+  margin: 10px auto;
+  padding: 40px;
+  margin-top: 50px !important;
+  margin-bottom: 40px;
+}
+
+/* Barra do topo com o título e o botão ☰ */
+
+/* ==========================================================================
+   ALINHAMENTO DO TOPO & EXPANSÃO DO QUADRADO PRINCIPAL
+   ========================================================================== */
+
+/* Barra do Topo: Hambúrguer na Esquerda, Título no Centro */
+.top-bar {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  justify-content: space-between; /* Espaça o botão da esquerda, o título e o espaço da direita */
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+}
+
+.brand-title-small {
+  font-family: var(--fonte-titulo);
+  font-size: 2.2rem;
+  color: var(--cor-verde);
+  letter-spacing: 2px;
+  text-align: center;
+  flex: 1; /* Garante que o título ocupe o centro */
+}
+
+/* Expande o Quadrado Central ocupando quase toda a tela */
+.auth-card.large-card {
+  width: 92%;
+  max-width: 1300px;  /* Largura bem maior para telas grandes */
+  min-height: 30vh;    /* Ocupa 75% da altura da tela */
+  padding: 40px;      /* Preenche os espaços internos melhor */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+
+/* Melhora o aproveitamento interno do Green Pass */
+.pass-card {
+  width: 100%;
+  padding: 30px;
+}
+
+.menu-hamburger {
+  background: transparent;
+  border: 2px solid var(--cor-musgo);
+  color: var(--cor-verde);
+  font-size: 1.8rem;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menu-hamburger:hover {
+  background-color: var(--cor-musgo);
+  color: var(--cor-clara);
+}
+
+/* Painel Lateral Gaveta (Abre ao clicar nas 3 barrinhas) */
+.drawer-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: auto;
+  width: 280px;
+  height: 100vh;
+  background-color: #121514;
+  border-left: 2px solid var(--cor-verde);
+  padding: 24px;
+  z-index: 999;
+  box-shadow: 8px 0 24px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--fonte-titulo);
+  color: var(--cor-verde);
+  font-size: 1.2rem;
+  border-bottom: 1px dashed var(--cor-musgo);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.btn-close-drawer {
+  background: transparent;
+  border: none;
+  color: var(--cor-laranja);
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.drawer-links .nav-btn-street {
+  width: 100%;
+  text-align: left;
+  font-family: var(--fonte-titulo) !important;
+  background-color: var(--cor-asfalto);
+  color: var(--cor-verde);
+  border: 1px solid var(--cor-musgo);
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.drawer-links .nav-btn-street.logout {
+  color: var(--cor-laranja);
+  border-color: var(--cor-laranja);
 }
