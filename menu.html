@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREEN RATS - Menu Principal</title>
+
+    <!-- Ligação correta do CSS no Flask -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- BARRA DE BOTÕES NO TOPO -->
+<!-- BARRA DO TOPO COM AS 3 BARRINHAS -->
+<!-- BARRA DO TOPO CENTRALIZADA COM ÍCONE À ESQUERDA -->
+<header class="top-bar">
+  <!-- Botão Hambúrguer na Esquerda -->
+  <button class="menu-hamburger" type="button" onclick="toggleMenuNav()">☰</button>
+  
+  <!-- Título GREEN RATS no Meio -->
+  <div class="brand-title-small">GREEN RATS</div>
+  
+  <!-- Elemento invisível para manter o título perfeitamente centralizado -->
+  <div style="width: 45px;"></div>
+</header>
+
+  <!-- MENU LATERAL OCULTO (GAVETA) -->
+  <aside id="drawerNav" class="drawer-nav hidden">
+    <div class="drawer-header">
+      <span>NAVEGAÇÃO</span>
+      <button class="btn-close-drawer" type="button" onclick="toggleMenuNav()">✕</button>
+    </div>
+    <div class="drawer-links">
+      <button type="button" class="nav-btn-street" onclick="abrirDesafio(); toggleMenuNav();">︎︎⚡︎ DESAFIO SEMANAL</button>
+      <button type="button" class="nav-btn-street" onclick="toggleGrupoAmigos(); toggleMenuNav();">𐀪𐀪 RANKING & CREW</button>
+      <a href="{{ url_for('index') }}" style="text-decoration: none;">
+        <button type="button" class="nav-btn-street logout">SAIR DA CONTA</button>
+      </a>
+    </div>
+  </aside>
+
+  <!-- CONTAINER PRINCIPAL DO MENU -->
+  <main class="auth-card large-card">
+
+    <!-- GREEN PASS (PERFIL DO USUÁRIO) -->
+    <div class="pass-card">
+      <div class="pass-header">
+        <span class="pass-tag-verified">[ GREEN PASS VERIFICADO ]</span>
+        <!-- O Jinja2 exibe dinamicamente o nome vindo do Flask -->
+        <div class="user-tag">{{ username }}</div>
+      </div>
+
+      <!-- STATUS DE STREAK E PONTOS -->
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="pass-stat-value">07</div>
+          <div class="pass-stat-label">Dias de Streak ঌ</div>
+        </div>
+        <div class="stat-box">
+          <div class="pass-stat-value">450</div>
+          <div class="pass-stat-label">Pontos Green 𖧧</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPÇÕES DO MENU PRINCIPAL -->
+    <div class="menu-grid">
+
+      <!-- PAINEL EXPANSÍVEL DO GRUPO DE AMIGOS -->
+      <div id="painelGrupo" class="crew-panel hidden">
+        <div class="crew-code-box">
+          <span>CÓDIGO DA SUA CREW:</span>
+          <div class="code-display">
+            <strong id="codigoCrew">RATS-8821</strong>
+            <button class="btn-copy" type="button" onclick="copiarCodigoCrew()">COPIAR</button>
+          </div>
+        </div>
+
+        <h3 class="ranking-title">RANKING DOS MEMBROS</h3>
+        <ul class="ranking-list">
+          <li class="ranking-item top-1">
+            <span class="rank-num">1º</span>
+            <span class="rank-name">{{ username }} (Você)</span>
+            <span class="rank-points">450 PTS</span>
+          </li>
+          <li class="ranking-item">
+            <span class="rank-num">2º</span>
+            <span class="rank-name">@pedro_eco</span>
+            <span class="rank-points">380 PTS</span>
+          </li>
+          <li class="ranking-item">
+            <span class="rank-num">3º</span>
+            <span class="rank-name">@lucas_green</span>
+            <span class="rank-points">290 PTS</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    function toggleGrupoAmigos() {
+      const painel = document.getElementById('painelGrupo');
+      painel.classList.toggle('hidden');
+    }
+
+    function copiarCodigoCrew() {
+      const codigo = document.getElementById('codigoCrew').innerText;
+      navigator.clipboard.writeText(codigo);
+      alert('Código do Grupo copiado: ' + codigo);
+    }
+
+    function abrirDesafio() {
+      alert('Iniciando o Desafio Semanal Eco!');
+    }
+
+    function toggleMenuNav() {
+  const drawer = document.getElementById('drawerNav');
+  drawer.classList.toggle('hidden');
+}
+  </script>
+</body>
+</html>

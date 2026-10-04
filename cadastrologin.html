@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREEN RATS - Login & Passaporte</title>
+
+  <!-- Vinculação do arquivo de estilos externo separado -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- CONTAINER PRINCIPAL DO CARD DE ACESSO -->
+  <main class="auth-card">
+
+    <!-- CABEÇALHO DO APLICATIVO -->
+    <header>
+<svg id="svgLogo1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" width="100%" height="100%">
+            <defs>
+              <filter id="glow1" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/>
+              </filter>
+            </defs>
+
+            <!-- Ícone do Rato Urbano + Folha -->
+            <g transform="translate(10, 10)">
+              <!-- Orelha Traseira -->
+              <circle cx="35" cy="25" r="14" fill="#6f9a46"/>
+              <!-- Cabeça do Rato -->
+              <path d="M 15 55 Q 10 30 35 25 Q 60 25 70 45 Q 85 55 90 62 Q 60 75 40 70 Z" fill="#a9e34b" class="rat-body"/>
+              <!-- Orelha Principal -->
+              <circle cx="45" cy="30" r="12" fill="#1b1f1d"/>
+              <circle cx="45" cy="30" r="8" fill="#d9682c"/>
+              <!-- Olho do Rato -->
+              <circle cx="62" cy="42" r="4" fill="#1b1f1d"/>
+              <!-- Focinho -->
+              <circle cx="90" cy="62" r="3.5" fill="#d9682c"/>
+              <!-- Folha Eco (Símbolo Verde) -->
+              <path class="leaf-icon" d="M 30 65 C 20 50 45 40 55 52 C 55 65 35 70 30 65 Z" fill="#6f9a46"/>
+              <path class="leaf-icon" d="M 35 62 Q 45 55 50 54" stroke="#a9e34b" stroke-width="1.5" fill="none"/>
+            </g>
+
+            <!-- Tipografia "GREEN RATS" com Estilo Stencil Urban -->
+            <text x="125" y="58" font-family="'Anton', sans-serif" font-size="46" fill="#a9e34b" letter-spacing="2" class="rat-text" filter="url(#glow1)">GREEN</text>
+            <text x="240" y="58" font-family="'Anton', sans-serif" font-size="46" fill="#eef0e2" letter-spacing="2" filter="url(#glow1)">RATS</text>
+
+            <!-- Subtítulo / Tag -->
+            <rect x="125" y="68" width="205" height="18" rx="4" fill="#6f9a46"/>
+            <text x="133" y="81" font-family="'Inter', monospace" font-size="10" font-weight="bold" fill="#1b1f1d" letter-spacing="1.5">Conecte-se. Impacte. Reflita.</text>
+          </svg>
+    </header>
+
+    <!-- NAVEGAÇÃO POR ABAS (LOGIN E CADASTRO) -->
+    <nav class="tab-group" id="tabNav">
+      <button class="tab-btn active" onclick="alternarAba('login')">ENTRAR</button>
+      <button class="tab-btn" onclick="alternarAba('cadastro')">CRIAR CONTA</button>
+    </nav>
+
+    <!-- ===================================================================
+         1. FORMULÁRIO DE LOGIN
+         =================================================================== -->
+<form id="formLogin" action="{{ url_for('login') }}" method="POST">
+      <div class="form-group">
+        <label for="loginEmail">E-mail do Usuário</label>
+        <input type="email" id="loginEmail" name="email" placeholder="seu@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="loginSenha">Senha da Conta</label>
+        <input type="password" id="loginSenha" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn-submit">ENTRAR</button>
+    </form>
+
+    <!-- ===================================================================
+         2. FORMULÁRIO DE CADASTRO
+         =================================================================== -->
+<form id="formCadastro" class="hidden" action="{{ url_for('login') }}" method="POST">
+      <div class="form-group">
+        <label for="cadNome">Green Tag (Username)</label>
+        <input type="text" id="cadNome" name="usuario" placeholder="Ex: @green_runner" required>
+    
+      </div>
+
+      <div class="form-group">
+        <label for="cadEmail">Seu E-mail</label>
+        <input type="email" id="cadEmail" name="email" placeholder="seu@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="cadSenha">Nova Chave de Acesso</label>
+        <input type="password" id="cadSenha" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn-submit">CRIAR</button>
+    </form>
+
+<!-- FOOTER DA ABA DE CADASTRO -->
+      <footer class="cad-footer" id="meuFooter">
+        <p>GREEN RATS | Formatura Kodland</p>
+        <p class="author">Desenvolvido por Mirella Vilhena</p>
+      </footer>
+  </main>
+
+  <!-- ===================================================================
+       LÓGICA JAVASCRIPT SIMPLIFICADA E COMENTADA
+       =================================================================== -->
+  <script>
+    // Alterna visualmente entre as abas de Login e Cadastro
+    function alternarAba(aba) {
+      const formLogin = document.getElementById('formLogin');
+      const formCadastro = document.getElementById('formCadastro');
+      const botoes = document.querySelectorAll('.tab-btn');
+
+      if (aba === 'login') {
+        formLogin.classList.remove('hidden');
+        formCadastro.classList.add('hidden');
+        botoes[0].classList.add('active');
+        botoes[1].classList.remove('active');
+      } else {
+        formCadastro.classList.remove('hidden');
+        formLogin.classList.add('hidden');
+        botoes[1].classList.add('active');
+        botoes[0].classList.remove('active');
+      }
+    }
+
+  </script>
+</body>
+</html>
