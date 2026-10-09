@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREEN RATS - Desafio Semanal Eco</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    /* Estilos específicos para os cards de perguntas do quiz */
+    .quiz-container {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: 100%;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .question-card {
+      background-color: var(--cor-asfalto);
+      border: 1px solid var(--cor-musgo);
+      border-radius: 10px;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--cor-clara);
+    }
+
+    .options-group {
+      display: flex;
+      gap: 10px;
+      min-width: 160px;
+    }
+
+    .btn-quiz-opt {
+      flex: 1;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--cor-musgo);
+      background-color: #1a1e1b;
+      color: var(--cor-clara);
+      font-family: var(--fonte-titulo);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-quiz-opt.selected-yes {
+      background-color: var(--cor-verde) !important;
+      color: var(--cor-asfalto) !important;
+      border-color: var(--cor-verde) !important;
+    }
+
+    .btn-quiz-opt.selected-no {
+      background-color: var(--cor-laranja) !important;
+      color: var(--cor-clara) !important;
+      border-color: var(--cor-laranja) !important;
+    }
+
+    .submit-quiz-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="top-bar">
+    <a href="{{ url_for('menu') }}" class="nav-btn-street" style="text-decoration: none; padding: 6px 14px;">
+      ← VOLTAR
+    </a>
+    <div class="brand-title-small">GREEN RATS</div>
+    <div style="width: 80px;"></div>
+  </header>
+
+  <!-- CONTAINER PRINCIPAL DO DESAFIO -->
+  <main class="auth-card large-card" style="margin-top: 30px !important;">
+
+    <div class="ranking-header">
+      <h1 class="ranking-main-title">⚡ DESAFIO SEMANAL ECO</h1>
+      <p class="ranking-subtitle">Responda com sinceridade às suas ações da semana. Cada <strong>"SIM"</strong> vale <strong>10 PONTOS</strong>!</p>
+    </div>
+
+    <form id="quizForm" action="{{ url_for('desafio_semanal') }}" method="POST">
+      <!-- Campo oculto para enviar a pontuação total calculada -->
+      <input type="hidden" name="pontos_ganhos" id="pontosGanhosInput" value="0">
+
+      <div class="quiz-container">
+
+        <!-- PERGUNTA 1 -->
+        <div class="question-card">
+          <span class="question-text">1. Separou o lixo reciclável do lixo orgânico em sua residência durante esta semana?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(1, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(1, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 2 -->
+        <div class="question-card">
+          <span class="question-text">2. Utilizou sacolas retornáveis (ecobags) ao fazer compras no supermercado ou feira?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(2, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(2, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 3 -->
+        <div class="question-card">
+          <span class="question-text">3. Optou por transporte público, bicicleta ou caminhada em vez de carro individual?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(3, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(3, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 4 -->
+        <div class="question-card">
+          <span class="question-text">4. Fechou a torneira enquanto escovava os dentes ou ensaboava a louça para economizar água?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(4, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(4, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 5 -->
+        <div class="question-card">
+          <span class="question-text">5. Desligou lâmpadas e aparelhos eletrônicos da tomada ao sair dos cômodos?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(5, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(5, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 6 -->
+        <div class="question-card">
+          <span class="question-text">6. Evitou o consumo de plásticos de uso único (como canudos, copos e talheres descartáveis)?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(6, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(6, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 7 -->
+        <div class="question-card">
+          <span class="question-text">7. Utilizou garrafa de água ou copo reutilizável durante a sua rotina diária?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(7, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(7, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 8 -->
+        <div class="question-card">
+          <span class="question-text">8. Reduziu o tempo do banho para diminuir o desperdício de água e consumo de energia?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(8, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(8, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 9 -->
+        <div class="question-card">
+          <span class="question-text">9. Evitou o desperdício de alimentos planejando melhor as refeições da semana?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(9, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(9, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 10 -->
+        <div class="question-card">
+          <span class="question-text">10. Descartou corretamente pilhas, baterias ou lixo eletrônico em pontos de coleta adequados?</span>
+          <div class="options-group">
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(10, 10, this)">SIM</button>
+            <button type="button" class="btn-quiz-opt" onclick="selecionarOpcao(10, 0, this)">NÃO</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="submit-quiz-container">
+        <button type="submit" class="nav-btn-street" style="font-size: 1.3rem; padding: 14px 32px;">
+          ENVIAR DESAFIO E RESGATAR PONTOS ☄ 
+        </button>
+      </div>
+
+    </form>
+
+  </main>
+
+  <script>
+    // Objeto para armazenar as respostas de cada pergunta
+    const respostas = {};
+
+    function selecionarOpcao(perguntaId, pontos, elemento) {
+      respostas[perguntaId] = pontos;
+
+      // Remove os destaques visuais dos botões do mesmo grupo
+      const grupo = elemento.parentElement;
+      const botoes = grupo.querySelectorAll('.btn-quiz-opt');
+      botoes.forEach(btn => {
+        btn.classList.remove('selected-yes', 'selected-no');
+      });
+
+      // Aplica o destaque na opção escolhida
+      if (pontos > 0) {
+        elemento.classList.add('selected-yes');
+      } else {
+        elemento.classList.add('selected-no');
+      }
+
+      // Calcula o total acumulado
+      let total = 0;
+      for (const id in respostas) {
+        total += respostas[id];
+      }
+
+      document.getElementById('pontosGanhosInput').value = total;
+    }
+
+    // Valida se todas as 10 perguntas foram respondidas antes do envio
+    document.getElementById('quizForm').addEventListener('submit', function(e) {
+      if (Object.keys(respostas).length < 10) {
+        e.preventDefault();
+        alert('Por favor, responda a todas as 10 perguntas antes de enviar o desafio!');
+      }
+    });
+  </script>
+</body>
+</html>
