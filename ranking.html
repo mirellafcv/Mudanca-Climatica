@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREEN RATS - Ranking da Crew</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="top-bar">
+    <a href="{{ url_for('menu') }}" class="nav-btn-street" style="text-decoration: none; padding: 6px 14px;">
+      ← VOLTAR
+    </a>
+    <div class="brand-title-small">GREEN RATS</div>
+    <div style="width: 80px;"></div>
+  </header>
+
+  <!-- CONTAINER DO RANKING -->
+  <main class="auth-card large-card" style="margin-top: 30px !important;">
+    
+    <div class="ranking-header">
+      <h1 class="ranking-main-title">RANKING DA CREW</h1>
+      <p class="ranking-subtitle">CÓDIGO DA CREW: <strong style="color: var(--cor-verde); font-family: var(--fonte-numero);">RATS-8821</strong></p>
+    </div>
+
+    <!-- PÓDIO (TOP 3) -->
+    <section class="podium-container">
+      
+      <!-- 2º LUGAR -->
+      <div class="podium-card rank-2">
+        <div class="podium-badge">2º</div>
+        <div class="podium-user">@pedro_eco</div>
+        <div class="podium-stat">380 PTS</div>
+        <div class="podium-streak">ঌ 05 dias</div>
+      </div>
+
+      <!-- 1º LUGAR (DESTAQUE) -->
+      <div class="podium-card rank-1">
+        <div class="podium-badge">1º</div>
+        <div class="podium-user">{{ username }}</div>
+        <div class="podium-stat">{{ pontos }} PTS</div>
+        <div class="podium-streak">ঌ 07 dias</div>
+      </div>
+
+      <!-- 3º LUGAR -->
+      <div class="podium-card rank-3">
+        <div class="podium-badge">3º</div>
+        <div class="podium-user">@lucas_green</div>
+        <div class="podium-stat">290 PTS</div>
+        <div class="podium-streak">ঌ 03 dias</div>
+      </div>
+
+    </section>
+
+    <!-- LISTA DOS DEMAIS INTEGRANTES -->
+    <section class="ranking-list-container">
+      <div class="rank-row">
+        <span class="rank-position">4º</span>
+        <span class="rank-username">@mari_recycle</span>
+        <span class="rank-info">ঌ 02 dias</span>
+        <span class="rank-points">210 PTS</span>
+      </div>
+
+      <div class="rank-row">
+        <span class="rank-position">5º</span>
+        <span class="rank-username">@biakodland</span>
+        <span class="rank-info">ঌ 01 dia</span>
+        <span class="rank-points">150 PTS</span>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
