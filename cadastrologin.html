@@ -6,7 +6,7 @@
   <title>GREEN RATS - Login & Passaporte</title>
 
   <!-- Vinculação do arquivo de estilos externo separado -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
 
@@ -59,7 +59,7 @@
     <!-- ===================================================================
          1. FORMULÁRIO DE LOGIN
          =================================================================== -->
-<form id="formLogin" action="{{ url_for('login') }}" method="POST">
+<form id="formLogin" action="/login" method="POST">
       <div class="form-group">
         <label for="loginEmail">E-mail do Usuário</label>
         <input type="email" id="loginEmail" name="email" placeholder="seu@email.com" required>
@@ -76,7 +76,7 @@
     <!-- ===================================================================
          2. FORMULÁRIO DE CADASTRO
          =================================================================== -->
-<form id="formCadastro" class="hidden" action="{{ url_for('login') }}" method="POST">
+<form id="formCadastro" class="hidden" action="/login" method="POST">
       <div class="form-group">
         <label for="cadNome">Green Tag (Username)</label>
         <input type="text" id="cadNome" name="usuario" placeholder="Ex: @green_runner" required>
@@ -85,7 +85,7 @@
 
       <div class="form-group">
         <label for="cadEmail">Seu E-mail</label>
-        <input type="email" id="cadEmail" name="email" placeholder="seu@email.com" required>
+        <input type="text" id="cadNome" name="usuario" placeholder="Ex: @green_runner" required>
       </div>
 
       <div class="form-group">
